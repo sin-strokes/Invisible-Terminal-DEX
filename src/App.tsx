@@ -47,9 +47,10 @@ import { PoolsList } from './components/liquidity/PoolsList';
 import { TradeTerminal } from './components/trade/TradeTerminal';
 import { AgentsDashboard } from './components/agents/AgentsDashboard';
 import { RewardsDashboard } from './components/rewards/RewardsDashboard';
+import { AiTerminal } from './components/ai/AiTerminal';
 import { ANALYTICS_DATA } from './constants';
 
-type Page = 'landing' | 'swap' | 'pools' | 'trade' | 'portfolio' | 'settings' | 'rewards' | 'history' | 'add-liquidity' | 'agents' | 'analytics' | 'profile';
+type Page = 'landing' | 'swap' | 'pools' | 'trade' | 'portfolio' | 'settings' | 'rewards' | 'history' | 'add-liquidity' | 'agents' | 'analytics' | 'profile' | 'ai';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>('landing');
@@ -336,6 +337,7 @@ export default function App() {
                 { id: 'rewards', icon: Trophy, label: 'REWARDS' },
                 { id: 'agents', icon: Users, label: 'AGENTS' },
                 { id: 'analytics', icon: BarChart3, label: 'STATS' },
+                { id: 'ai', icon: Cpu, label: 'AI' },
                 { id: 'settings', icon: Settings, label: 'CONFIG' },
               ].map((item) => (
                 <button
@@ -391,6 +393,7 @@ export default function App() {
             { id: 'rewards', icon: Trophy, label: 'REWARDS' },
             { id: 'agents', icon: Users, label: 'AGENTS' },
             { id: 'analytics', icon: BarChart3, label: 'STATS' },
+            { id: 'ai', icon: Cpu, label: 'AI' },
             { id: 'settings', icon: Settings, label: 'CONFIG' },
           ].map((item) => (
             <button
@@ -557,6 +560,12 @@ export default function App() {
               <div className="max-w-4xl mx-auto">
                 <RewardsDashboard />
               </div>
+            </PageTransition>
+          )}
+
+          {currentPage === 'ai' && (
+            <PageTransition transitionKey="ai">
+              <AiTerminal />
             </PageTransition>
           )}
 
