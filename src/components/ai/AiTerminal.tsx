@@ -70,7 +70,7 @@ export const AiTerminal = () => {
     if (!trimmed || isStreaming) return;
 
     const userMsg: Message = {
-      id: Math.random().toString(36).substr(2, 9),
+      id: crypto.randomUUID(),
       role: 'user',
       text: trimmed,
       timestamp: new Date().toLocaleTimeString('en-US', { hour12: false }),
@@ -84,7 +84,7 @@ export const AiTerminal = () => {
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
       const errMsg: Message = {
-        id: Math.random().toString(36).substr(2, 9),
+        id: crypto.randomUUID(),
         role: 'model',
         text: 'ERROR: GEMINI_API_KEY not configured. Please set the API key to enable AI_TERMINAL.',
         timestamp: new Date().toLocaleTimeString('en-US', { hour12: false }),
@@ -108,7 +108,7 @@ export const AiTerminal = () => {
       }
 
       const modelMsg: Message = {
-        id: Math.random().toString(36).substr(2, 9),
+        id: crypto.randomUUID(),
         role: 'model',
         text: fullText,
         timestamp: new Date().toLocaleTimeString('en-US', { hour12: false }),
@@ -117,7 +117,7 @@ export const AiTerminal = () => {
       setStreamingText('');
     } catch (err: any) {
       const errMsg: Message = {
-        id: Math.random().toString(36).substr(2, 9),
+        id: crypto.randomUUID(),
         role: 'model',
         text: `SYSTEM_ERROR: ${err?.message ?? 'Unknown error occurred during AI query.'}`,
         timestamp: new Date().toLocaleTimeString('en-US', { hour12: false }),
